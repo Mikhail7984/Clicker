@@ -1,20 +1,11 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using TMPro;
 
-public class ClickButton : MonoBehaviour
+public class ClickButton : MonoBehaviour, IPointerDownHandler
 {
-    public TMP_Text goldText;
-    public int clicks;
-
-    private void Update()
+    public void OnPointerDown(PointerEventData eventData)
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("clicked");
-
-            clicks += 1;
-
-            goldText.text = $"Gold: {clicks}";
-        }
+        Debug.Log("clicked" + gameObject.name);
     }
 }
