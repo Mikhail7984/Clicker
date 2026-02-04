@@ -9,6 +9,8 @@ public class Multiplier : MonoBehaviour, IPointerDownHandler
 
     private ClickButton text;
 
+    private int price = 100;
+
     private void Awake()
     {
         text = FindAnyObjectByType<ClickButton>();
@@ -16,17 +18,18 @@ public class Multiplier : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (ClickButton.clicks >= 100)
+        if (ClickButton.clicks >= price)
         {
             ClickButton.clicks = 0;
-            ClickButton.amount = 2;
+            price *= 2;
+            ClickButton.amount *= 2;
             text.clickText.text = "Clicks: 0";
             multiplierText.text = "Multiplier is bought.";
             StartCoroutine(Wait());
         }
         else
         {
-            multiplierText.text = $"Not enough clicks ({ClickButton.clicks} / 100)";
+            multiplierText.text = $"Not enough clicks ({ClickButton.clicks} / {price})";
             StartCoroutine(Wait());
         }
     }
