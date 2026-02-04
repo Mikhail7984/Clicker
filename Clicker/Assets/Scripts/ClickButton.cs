@@ -6,13 +6,13 @@ public class ClickButton : MonoBehaviour, IPointerDownHandler
 {
     public TMP_Text clickText;
     public static int clicks;
-    public static int amount = 1;
+    public static int amount = 20;
 
-    private AudioSource audioSource;
+    private AudioSource _audioSource;
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -20,6 +20,6 @@ public class ClickButton : MonoBehaviour, IPointerDownHandler
         clicks += amount;
         clickText.text = $"Clicks: {clicks}";
 
-        audioSource.Play();
+        _audioSource.Play();
     }
 }

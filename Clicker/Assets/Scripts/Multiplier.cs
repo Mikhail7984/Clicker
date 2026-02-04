@@ -7,38 +7,38 @@ public class Multiplier : MonoBehaviour, IPointerDownHandler
 {
     public TMP_Text multiplierText;
 
-    private ClickButton text;
+    private ClickButton _text;
 
-    private int price = 100;
+    private int _price = 100;
 
-    private AudioSource audioSource;
+    private AudioSource _audioSource;
 
     private void Awake()
     {
-        text = FindAnyObjectByType<ClickButton>();
+        _text = FindAnyObjectByType<ClickButton>();
     }
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (ClickButton.clicks >= price)
+        if (ClickButton.clicks >= _price)
         {
             ClickButton.clicks = 0;
-            price *= 2;
+            _price *= 2;
             ClickButton.amount *= 2;
-            audioSource.Play();
-            text.clickText.text = "Clicks: 0";
+            _audioSource.Play();
+            _text.clickText.text = "Clicks: 0";
             multiplierText.text = "Multiplier is bought.";
             StartCoroutine(Wait());
         }
         else
         {
-            multiplierText.text = $"Not enough clicks ({ClickButton.clicks} / {price})";
-            audioSource.Play();
+            multiplierText.text = $"Not enough clicks ({ClickButton.clicks} / {_price})";
+            _audioSource.Play();
             StartCoroutine(Wait());
         }
     }
